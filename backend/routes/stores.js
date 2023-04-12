@@ -5,7 +5,6 @@ import {Store} from './models.js';
 
 const storeRouter = Router(); 
 
-
 blogRouter.get('/', async (req, res) => {
     const stores = await Store.find();
   
@@ -35,21 +34,10 @@ blogRouter.get('stores/:storeId', async (req, res) => {
     }
   });
 
-storeRouter.get('/stores/:storeId', async (req, res) => {
-	const storeId = req.params.storeId; 
-    try{ 
-        const currTodo = await fs.readFile(`storage/${storeId}.json`); 
-        res.json(JSON.parse(currTodo));
-    }catch (error){
-        console.log(error); 
-        res.status(500); 
-        res.send('Get request failed'); 
-    }
-}); 
 
 storeRouter.post("/stores/new", async (req, res) => {
     const requestBody = req.body;
-    store._id = uuidv4();
+    requestBody._id = uuidv4();
   
     try {
       const result = await new Store(requestBody).save();
@@ -71,4 +59,4 @@ storeRouter.post("/stores/new", async (req, res) => {
 
  
 
-export default todoRouter; 
+export default storeRouter; 
