@@ -1,21 +1,21 @@
 const uuidv4 = require('uuid');
 const { Router } = require('express');
 //import * as fs from 'node:fs/promises';
-const {Store} =  require('../models.js'); 
+const {Item} =  require('../models.js'); 
 
-const storeRouter = Router(); 
+const itemRouter = Router(); 
 
-storeRouter.get('/', async (req, res) => {
+itemRouter.get('/', async (req, res) => {
     const stores = await Store.find();
     res.send(stores);
   });
 
-storeRouter.get('stores/:storeId', async (req, res) => {
-    const storeId = req.params.storeId;
+itemRouter.get('stores/:storeId', async (req, res) => {
+    const itemId = req.params.itemId;
     try {
-      const store = await Store.findOne({ _id: storeId });
-      console.log(store);
-      if (store === null) {
+      const item = await Item.findOne({ _id: itemId });
+      console.log(item);
+      if (item === null) {
         res.status(404);
         res.json({
           status: 404,
@@ -25,7 +25,7 @@ storeRouter.get('stores/:storeId', async (req, res) => {
       }
       // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
       // Express' `Response` object
-      res.json(store);
+      res.json(item);
     } catch (e) {
       console.log(e);
       res.status(500);
@@ -34,12 +34,12 @@ storeRouter.get('stores/:storeId', async (req, res) => {
   });
 
 
-storeRouter.post("/stores/new", async (req, res) => {
+itemRouter.post("/stores/new", async (req, res) => {
     const requestBody = req.body;
     requestBody._id = uuidv4();
   
     try {
-      const result = await new Store(requestBody).save();
+      const result = await new Item(requestBody).save();
       console.log(result);
       res.status(201);
       res.json({
@@ -58,4 +58,4 @@ storeRouter.post("/stores/new", async (req, res) => {
 
  
 
-export default storeRouter; 
+export default itemRouter; 
