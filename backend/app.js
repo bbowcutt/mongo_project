@@ -28,13 +28,13 @@ app.get('/stores', async(req, res) => {
     const stores = await Store.find({});
     res.send({ stores })
     // res.send('stores', { stores });
-})
+}); 
 
-app.get('/stores/:storeId', async(req, res) => {
-  const stores = await Store.find({storeId});
-  res.send({ stores })
-  // res.send('stores', { stores });
-})
+// app.get('/stores/:storeId', async(req, res) => {
+//   const stores = await Store.find({storeId});
+//   res.send({ stores })
+//   // res.send('stores', { stores });
+// })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
