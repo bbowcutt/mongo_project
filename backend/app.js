@@ -24,17 +24,17 @@ db.once('open', function() {
 // const storeExample = new Store({ name: "PT", _id: "e512aa28-0b4a-4667-a7df-e047bd6994e0" });
 // storeExample.save();
 
-app.get('/', async(req, res) => {
+app.get('/stores', async(req, res) => {
     const stores = await Store.find({});
     res.send({ stores })
     // res.send('stores', { stores });
 })
 
-// app.get('/stores/storeId', async(req, res) => {
-//   const stores = await Store.find({storeId});
-//   res.send({ stores })
-//   // res.send('stores', { stores });
-// })
+app.get('/stores/:storeId', async(req, res) => {
+  const stores = await Store.find({storeId});
+  res.send({ stores })
+  // res.send('stores', { stores });
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -9,8 +9,8 @@ export default function SingleStore() {
   const store = useLoaderData();
 
   return (
-    <div key={store.name}>
-      <h1>{store.id}</h1>
+    <div>
+      <h1>{store._id}</h1>
     </div>
   );
 }

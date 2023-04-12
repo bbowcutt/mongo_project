@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Wrapper from './Wrapper';
 import Stores, { fetchStore } from './Stores';
-import SingleStore, { getStore } from './SingleStore';
+import SingleStore, { getStore } from './SingleStore.js';
 
 const router = createBrowserRouter([
   {

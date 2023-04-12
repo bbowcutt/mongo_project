@@ -5,13 +5,11 @@ export default function Stores() {
   return (
     <>
       <div>
-        <Link to={`${stores.stores[0]._id}`}><h1>{stores.stores[0].name}</h1></Link>
+        {stores.map(store => <Link to={`${store._id}`}><h1>{store.name}</h1></Link>)}
       </div>
     </>
   );
 }
-
-
 
 async function fetchStore() {
   const response = await fetch(`http://localhost:3001/stores`, {
@@ -22,11 +20,8 @@ async function fetchStore() {
     }
   });
 
-  const jsonResponse = await response.json();
 
-  console.log(jsonResponse);
-
-  return jsonResponse;
+  return await response.json();
 }
 
 export { fetchStore };
