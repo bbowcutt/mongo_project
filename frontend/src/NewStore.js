@@ -48,10 +48,14 @@ export default function CreateProduct() {
       const newProduct = {
         name: inputProductName
       };
-  
+      console.log(JSON.stringify(newProduct)); 
       await fetch(`http://localhost:3001/stores/new`, {
         method: "POST",
         body: JSON.stringify(newProduct),
+        mode: 'cors', 
+        headers: {
+            'Content-Type': 'application/json'
+        }
       })
     }
   
@@ -60,7 +64,7 @@ export default function CreateProduct() {
         e.preventDefault();
         handleSubmit(e.data); 
       }}>
-        <input type="text" placeholder="Product name..." value={inputProductName} onChange={(e) => nameChange} />
+        <input type="text" placeholder="Store name..." value={inputProductName} onChange={(e) => setInputProductName(e.target.value)} />
         <button type="submit">Add</button>
       </form>
     )

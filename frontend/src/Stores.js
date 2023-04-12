@@ -6,7 +6,7 @@ export default function Stores() {
     <>
       <div>
         
-        {stores.map(store => <Link to={`${store._id}`}><h1>{store.name}</h1></Link>)}
+        {stores.map(store => <Link key={store._id} to={`${store._id}`}><h1>{store.name}</h1></Link>)}
       </div>
     </>
   );
