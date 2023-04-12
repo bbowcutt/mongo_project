@@ -29,7 +29,7 @@ app.get('/', async(req, res) => {
 
 
 
-app.use('stores', storeRouter); 
+app.use('/stores', storeRouter); 
 
 
 app.listen(port, () => {

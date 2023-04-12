@@ -24,6 +24,13 @@ const router = createBrowserRouter([
             <SingleStore />
         ),
       },
+      {
+        path: "/stores/new",
+        loader: getStore,
+        element: (
+            <SingleStore />
+        ),
+      },
     ],
   },
 ]);

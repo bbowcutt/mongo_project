@@ -16,7 +16,7 @@ storeRouter.get('/', async (req, res) => {
     res.send(stores);
   });
 
-storeRouter.get('stores/:storeId', async (req, res) => {
+storeRouter.get('/:storeId', async (req, res) => {
     const storeId = req.params.storeId;
     try {
       const store = await Store.findOne({ _id: storeId });
@@ -40,9 +40,9 @@ storeRouter.get('stores/:storeId', async (req, res) => {
   });
 
 
-storeRouter.post("/stores/new", async (req, res) => {
+storeRouter.post("/new", async (req, res) => {
     const requestBody = req.body;
-    requestBody._id = uuidv4();
+    requestBody._id = uuid4();
   
     try {
       const result = await new Store(requestBody).save();
@@ -64,4 +64,4 @@ storeRouter.post("/stores/new", async (req, res) => {
 
  
 
-module.export = {storeRouter} ; 
+module.exports = {storeRouter} ; 
