@@ -1,7 +1,13 @@
-const uuidv4 = require('uuid');
+const {v4:uuid4} =require('uuid');
+
 const { Router } = require('express');
 //import * as fs from 'node:fs/promises';
-const {Store} =  require('../models.js'); 
+const {Item} =  require('../models.js'); 
+
+// const uuidv4 = require('uuid');
+// const { Router } = require('express');
+// //import * as fs from 'node:fs/promises';
+// const {Store} =  require('../models.js'); 
 
 const storeRouter = Router(); 
 
@@ -58,4 +64,4 @@ storeRouter.post("/stores/new", async (req, res) => {
 
  
 
-export default storeRouter; 
+module.export = {storeRouter} ; 

@@ -1,4 +1,4 @@
-const uuidv4 = require('uuid');
+const {v4:uuid4} =require('uuid');
 const { Router } = require('express');
 //import * as fs from 'node:fs/promises';
 const {Item} =  require('../models.js'); 
@@ -36,7 +36,7 @@ itemRouter.get('stores/:storeId', async (req, res) => {
 
 itemRouter.post("/stores/new", async (req, res) => {
     const requestBody = req.body;
-    requestBody._id = uuidv4();
+    requestBody._id = uuid.v4();
   
     try {
       const result = await new Item(requestBody).save();
@@ -58,4 +58,4 @@ itemRouter.post("/stores/new", async (req, res) => {
 
  
 
-export default itemRouter; 
+  module.export = {itemRouter}; 
