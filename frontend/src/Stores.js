@@ -6,7 +6,7 @@ export default function Stores() {
     <>
       <div>
        //
-       <Link to={`${stores._id}`}><h1>{store.storeName}</h1></Link>
+       <Link to={`${stores._id}`}><h1>{stores.name}</h1></Link>
 
         {/* {stores.map(store => <Link to={`${store._id}`}><h1>{store.name}</h1></Link>)} */}
       </div>
