@@ -1,23 +1,38 @@
-export default function CreateStore() {
-    const [inputStoreName, setInputStoreName] = useState('');
-    async function handleSubmit(data) {
-      const newStore = {
-        name: inputStoreName
-      };
-  
-      await fetch(`http://localhost:3001/stores`, {
-        method: "POST",
-        body: JSON.stringify(newStore),
-      })
-    }
-  
+export function CreateStore({name = "sample store"}){
+    var myHeaders = new Headers(); 
+    myHeaders.append("Content-Type", "application/json"); 
+    var raw = JSON.stringify({
+        "name":name, 
+    });
+
+    var requestOptions = {
+        method: 'POST', 
+        headers: myHeaders,
+        body: raw, 
+        redirect: 'follow'
+    }; 
+
+    fetch('http://localhost:3001/stores/new', requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error)); 
+}
+
+export default function NewStore({ }){
+    var name; 
+    const nameChange = (event) => {
+        name = event.target.value; 
+    }; 
     return (
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        // some handleSubmit function
-      }}>
-        <input type="text" placeholder="Product name..." value={inputStoreName} onChange={(e) => ...} />
-        <button type="submit">Add</button>
-      </form>
+        <div>
+            <form onSubmit={() => CreateStore({name})}> 
+                <div>
+                    Name: <input type='text' name="description" onChange = {nameChange}> </input>
+                </div>
+                <div>
+                    <button type = "submit">ADD</button>
+                </div>
+            </form>
+        </div>
     )
-  }$
+}

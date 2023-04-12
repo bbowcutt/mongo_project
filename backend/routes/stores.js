@@ -39,7 +39,7 @@ storeRouter.get('/:storeId', async (req, res) => {
   });
 
 
-storeRouter.post("/new", async (req, res) => {
+storeRouter.post("stores/new", async (req, res) => {
     const requestBody = req.body;
     requestBody._id = uuid4();
   
