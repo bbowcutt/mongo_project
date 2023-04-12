@@ -4,6 +4,7 @@ const cors = require('cors')
 const app = express()
 const port = 3001
 const { Store, Item } = require('./models.js');
+const {storeRouter} = require('./routes/stores.js'); 
 
 app.use(cors());
 app.use(express.json());
@@ -23,6 +24,8 @@ app.get('/stores', async(req, res) => {
     const stores = await Store.find();
     res.send( stores )
 }); 
+
+app.use('stores', storeRouter); 
 
 
 app.listen(port, () => {

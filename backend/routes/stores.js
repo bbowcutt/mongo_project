@@ -7,7 +7,6 @@ const storeRouter = Router();
 
 blogRouter.get('/', async (req, res) => {
     const stores = await Store.find();
-  
     res.send(stores);
   });
 
