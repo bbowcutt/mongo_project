@@ -11,7 +11,7 @@ blogRouter.get('/', async (req, res) => {
   });
 
 blogRouter.get('stores/:storeId', async (req, res) => {
-    const storeId = req.params.storeid;
+    const storeId = req.params.storeId;
     try {
       const store = await Store.findOne({ _id: storeId });
       console.log(store);

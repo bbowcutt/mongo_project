@@ -6,6 +6,7 @@ const port = 3001
 const { Store, Item } = require('./models.js');
 const {storeRouter} = require('./routes/stores.js'); 
 
+
 app.use(cors());
 app.use(express.json());
 
@@ -20,7 +21,7 @@ db.once('open', function() {
 
 
 
-app.get('/stores', async(req, res) => {
+app.get('/', async(req, res) => {
     const stores = await Store.find();
     res.send( stores )
 }); 
