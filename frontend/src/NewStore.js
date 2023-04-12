@@ -5,7 +5,7 @@ export default function CreateStore() {
         name: inputStoreName
       };
   
-      await fetch(`http:localhost:3001/stores`, {
+      await fetch(`http://localhost:3001/stores`, {
         method: "POST",
         body: JSON.stringify(newStore),
       })
@@ -16,8 +16,8 @@ export default function CreateStore() {
         e.preventDefault();
         // some handleSubmit function
       }}>
-        <input type="text" placeholder="Store name..." value={inputStorename} onChange={(e) => ...} />
+        <input type="text" placeholder="Product name..." value={inputStoreName} onChange={(e) => ...} />
         <button type="submit">Add</button>
       </form>
     )
-  }
+  }$
