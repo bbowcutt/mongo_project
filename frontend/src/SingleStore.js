@@ -10,7 +10,7 @@ export default function SingleStore() {
 
   return (
     <div>
-      <h1>{store._id}</h1>
+      <h1>{store.name}</h1>
     </div>
   );
 }
