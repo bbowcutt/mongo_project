@@ -11,7 +11,6 @@ export default function SingleStore() {
   return (
     <div>
       <h1>name: {store.name}</h1>
-      <h2>id: {store._id}</h2>
     </div>
   );
 }

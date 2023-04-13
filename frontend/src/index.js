@@ -7,6 +7,10 @@ import Wrapper from './Wrapper';
 import Stores, { fetchStore } from './Stores';
 import SingleStore, { getStore } from './SingleStore.js';
 import CreateProduct from './NewStore.js'; 
+import Items, { fetchItem } from './Items';
+
+import SingleItem, { getItem } from './SingleItem.js';
+import CreateItem from './NewItem.js'; 
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,19 @@ const router = createBrowserRouter([
         path: "/stores/new",
         element: (
             <CreateProduct />
+        ),
+      },
+      {
+        path: "/stores/:storeId/items/:itemId",
+        loader: getItem,
+        element: (
+            <SingleItem />
+        ),
+      },
+      {
+        path: "/stores/:storeId/items/new",
+        element: (
+            <CreateItem />
         ),
       },
     ],

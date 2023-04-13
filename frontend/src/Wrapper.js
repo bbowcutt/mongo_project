@@ -9,6 +9,7 @@ export default function Wrapper() {
       <header>
         <Link to="/stores/new">Add new store</Link>
       </header>
+    
 
       <Outlet />
     </>
