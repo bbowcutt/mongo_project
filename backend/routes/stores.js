@@ -1,7 +1,9 @@
 const {v4:uuid4} =require('uuid');
 const { Router } = require('express');
+const express = require('express'); 
 //import * as fs from 'node:fs/promises';
 const {Store} =  require('../models.js'); 
+const {itemRouter} = require('./items.js'); 
 
 // const uuidv4 = require('uuid');
 // const { Router } = require('express');
@@ -9,6 +11,8 @@ const {Store} =  require('../models.js');
 // const {Store} =  require('../models.js'); 
 
 const storeRouter = Router(); 
+itemRouter.mergeParams = true;
+storeRouter.use("/:storeId/items", itemRouter);
 
 storeRouter.get('/', async (req, res) => {
     const stores = await Store.find();

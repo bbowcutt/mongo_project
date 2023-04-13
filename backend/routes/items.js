@@ -3,14 +3,20 @@ const { Router } = require('express');
 //import * as fs from 'node:fs/promises';
 const {Item} =  require('../models.js'); 
 
+// const uuidv4 = require('uuid');
+// const { Router } = require('express');
+// //import * as fs from 'node:fs/promises';
+// const {Store} =  require('../models.js'); 
+
 const itemRouter = Router(); 
 
 itemRouter.get('/', async (req, res) => {
-    const stores = await Store.find();
-    res.send(stores);
+    const items = await Item.find();
+    res.send(items);
   });
 
-itemRouter.get('stores/:storeId', async (req, res) => {
+itemRouter.get('/:itemId', async (req, res) => {
+    const storeId = req.params.store_id; //maybe ?? idk? 
     const itemId = req.params.itemId;
     try {
       const item = await Item.findOne({ _id: itemId });
@@ -34,9 +40,10 @@ itemRouter.get('stores/:storeId', async (req, res) => {
   });
 
 
-itemRouter.post("/stores/new", async (req, res) => {
+itemRouter.post("/new", async (req, res) => {
     const requestBody = req.body;
-    requestBody._id = uuid.v4();
+    console.log(requestBody); 
+    requestBody._id = uuid4();
   
     try {
       const result = await new Item(requestBody).save();
@@ -58,4 +65,4 @@ itemRouter.post("/stores/new", async (req, res) => {
 
  
 
-  module.exports = {itemRouter}; 
+module.exports = {itemRouter} ; 
