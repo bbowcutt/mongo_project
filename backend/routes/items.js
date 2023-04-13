@@ -1,17 +1,14 @@
 const {v4:uuid4} =require('uuid');
-const { Router } = require('express');
+const express = require('express');
 //import * as fs from 'node:fs/promises';
 const {Item} =  require('../models.js'); 
 
-// const uuidv4 = require('uuid');
-// const { Router } = require('express');
-// //import * as fs from 'node:fs/promises';
-// const {Store} =  require('../models.js'); 
 
-const itemRouter = Router(); 
-itemRouter.mergeParams = true; 
+const itemRouter = express.Router({mergeParams: true}); 
+
 itemRouter.get('/', async (req, res) => {
-    const items = await Item.find();
+    const items = await Item.find({"store_id": req.params.storeId});
+    console.log("Here are the items", items); 
     res.send(items);
   });
 
@@ -19,7 +16,7 @@ itemRouter.get('/:itemId', async (req, res) => {
     const storeId = req.params.storeId; //maybe ?? idk? 
     const itemId = req.params.itemId;
     try {
-      const item = await Item.findOne({ _id: itemId });
+      const item = await Item.findOne({ "_id": itemId });
       console.log(item);
       if (item === null) {
         res.status(404);
@@ -41,36 +38,16 @@ itemRouter.get('/:itemId', async (req, res) => {
 
 
 itemRouter.post("/new", async (req, res) => {
-    const storeId = req.params.storeId;
-    const requestBody = req.body;
-    console.log(requestBody); 
-    requestBody._id = uuid4();
-    console.log("store ID: ", storeId); 
-    try {
-        
-      const result = await new Item({
-        store_id: storeId, 
-        price: req.body.price, 
-        quantity: req.body.quanitity, 
-        name: req.body.name,
-        _id: uuid4()
-      }).save();
-      console.log(result);
-      res.status(201);
-      res.json({
-        status: 201,
-        message: 'created',
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(500);
-      res.json({
-        status: 500,
-        message: e,
-      });
-    }
+    const newItem = await new Item({
+      _id: uuid4(), 
+      price: req.body.price, 
+      quantity: req.body.quanitity, 
+      name: req.body.name,
+      store_id: req.params.storeI
+    }).save(); 
+    
   }); 
 
  
 
-module.exports = {itemRouter}; 
+module.exports = itemRouter; 

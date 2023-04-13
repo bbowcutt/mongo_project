@@ -9,7 +9,7 @@ export async function getItems({ params }) {
     }});
 
   const check =  await response.json();
-  console.log(check); 
+  //console.log(check); 
   return check; 
 
 }
@@ -17,17 +17,12 @@ export async function getItems({ params }) {
 export default function SingleStore() {
   const store = useLoaderData();
 
-
-  
-
-
-  console.log(store); 
-
-
+  console.log("SINGLE STORE CONSLOG", store); 
 
   return (
     <div>
       <h1>name: {store.name}</h1>
+      <h1> item: </h1>
       <div>
         {store.map(item => <Link key={item._id} to={`${item._id}`}><h1>{item.name}</h1></Link>)}
       </div>

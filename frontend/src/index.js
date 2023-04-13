@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         path: "/stores/:storeId",
         loader: getItems,
         element: (
-            <SingleStore />
+            <Items />
         ),
       },
       {

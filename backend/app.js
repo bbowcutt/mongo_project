@@ -4,8 +4,7 @@ const cors = require('cors')
 const app = express()
 const port = 3001
 const { Store, Item } = require('./models.js');
-const {storeRouter} = require('./routes/stores.js'); 
-const {itemRouter} = require('./routes/items.js'); 
+const storeRouter = require('./routes/stores.js'); 
 
 
 app.use(cors());
