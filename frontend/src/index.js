@@ -10,7 +10,7 @@ import CreateProduct from './NewStore.js';
 import Items, { fetchItem } from './Items';
 
 import SingleItem, { getItem } from './SingleItem.js';
-import CreateItem from './NewItem.js'; 
+import CreateItem, {getItemNew} from './NewItem.js'; 
 
 const router = createBrowserRouter([
   {
@@ -44,6 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stores/:storeId/items/new",
+        loader: getItemNew, 
         element: (
             <CreateItem />
         ),
