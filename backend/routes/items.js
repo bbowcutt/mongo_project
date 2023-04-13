@@ -9,7 +9,7 @@ const {Item} =  require('../models.js');
 // const {Store} =  require('../models.js'); 
 
 const itemRouter = Router(); 
-
+itemRouter.mergeParams = true; 
 itemRouter.get('/', async (req, res) => {
     const items = await Item.find();
     res.send(items);
@@ -41,12 +41,20 @@ itemRouter.get('/:itemId', async (req, res) => {
 
 
 itemRouter.post("/new", async (req, res) => {
+    const storeId = req.params.storeId;
     const requestBody = req.body;
     console.log(requestBody); 
     requestBody._id = uuid4();
-  
+    console.log("store ID: ", storeId); 
     try {
-      const result = await new Item(requestBody).save();
+        
+      const result = await new Item({
+        store_id: storeId, 
+        price: req.body.price, 
+        quantity: req.body.quanitity, 
+        name: req.body.name,
+        _id: uuid4()
+      }).save();
       console.log(result);
       res.status(201);
       res.json({
@@ -65,4 +73,4 @@ itemRouter.post("/new", async (req, res) => {
 
  
 
-module.exports = {itemRouter} ; 
+module.exports = {itemRouter}; 

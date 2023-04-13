@@ -9,7 +9,9 @@ export async function getItemNew({ params }) {
             'Content-Type': 'application/json'
         }
     })
-    return await response.json();
+    const resp = await response.json(); 
+    console.log("response", resp); 
+    return resp;
   }
 
 export default function CreateItem() {
@@ -23,13 +25,15 @@ export default function CreateItem() {
 
 
     async function handleSubmit(data) {
+        console.log("Console loggin: " , item); 
+
       const newProduct = {
         name: inputProductName,
         quantity: inputProductQuantity, 
         price: inputProductPrice, 
-        store_id: item.storeId
+        store_id: item._id
       };
-      console.log(item.storeId); 
+      console.log(newProduct); 
       //console.log(newProduct.store_id); 
       console.log(JSON.stringify(newProduct)); 
       await fetch(`http://localhost:3001/stores/${item.storeId}/items/new`, {

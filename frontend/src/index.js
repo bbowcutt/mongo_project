@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Wrapper from './Wrapper';
 import Stores, { fetchStore } from './Stores';
-import SingleStore, { getStore } from './SingleStore.js';
+import SingleStore, { getItems } from './SingleStore.js';
 import CreateProduct from './NewStore.js'; 
 import Items, { fetchItem } from './Items';
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stores/:storeId",
-        loader: getStore,
+        loader: getItems,
         element: (
             <SingleStore />
         ),
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stores/:storeId/items/new",
-        loader: getStore, 
+        loader: getItemNew, 
         element: (
             <CreateItem />
         ),

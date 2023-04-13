@@ -2,7 +2,7 @@ const {v4:uuid4} =require('uuid');
 const { Router } = require('express');
 const express = require('express'); 
 //import * as fs from 'node:fs/promises';
-const {Store} =  require('../models.js'); 
+const {Store, Item} =  require('../models.js'); 
 const {itemRouter} = require('./items.js'); 
 
 // const uuidv4 = require('uuid');
@@ -11,6 +11,7 @@ const {itemRouter} = require('./items.js');
 // const {Store} =  require('../models.js'); 
 
 const storeRouter = Router(); 
+storeRouter.mergeParams = true; 
 itemRouter.mergeParams = true;
 storeRouter.use("/:storeId/items", itemRouter);
 
@@ -21,16 +22,19 @@ storeRouter.get('/', async (req, res) => {
 
 storeRouter.get('/:storeId', async (req, res) => {
     const storeId = req.params.storeId;
+    console.log("stores StoreId: ", storeId); 
     try {
-      const store = await Store.findOne({ _id: storeId });
-      console.log(store);
+    const store = await Item.find({ "store_id": storeId});
+    //const store = await Item.find({});
+
+      console.log("store" , store);
       if (store === null) {
         res.status(404);
         res.json({
           status: 404,
           message: 'not found',
         });
-        return;
+        res.send(store);
       }
       // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
       // Express' `Response` object
