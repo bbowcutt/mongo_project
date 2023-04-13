@@ -7,6 +7,7 @@ const {Item} =  require('../models.js');
 const itemRouter = express.Router({mergeParams: true}); 
 
 itemRouter.get('/', async (req, res) => {
+  console.log('storeID is::::: ', req.params.storeId); 
     const items = await Item.find({"store_id": req.params.storeId});
     console.log("Here are the items", items); 
     res.send(items);

@@ -17,7 +17,6 @@ export async function getItems({ params }) {
 export default function SingleStore() {
   const store = useLoaderData();
 
-  console.log("SINGLE STORE CONSLOG", store); 
 
   return (
     <div>
