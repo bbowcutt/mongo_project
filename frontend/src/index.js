@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stores/:storeId/items/new",
-        loader: getItemNew, 
+        loader: getStore, 
         element: (
             <CreateItem />
         ),

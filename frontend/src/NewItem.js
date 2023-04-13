@@ -2,7 +2,13 @@ import {useState} from 'react'
 import { useLoaderData } from 'react-router-dom';
 
 export async function getItemNew({ params }) {
-    const response = await fetch(`http://localhost:3001/stores/${params.storeId}/items/${params.itemId}/new`);
+    const response = await fetch(`http://localhost:3001/stores/${params.storeId}`,  {
+        method: "GET",
+        mode: 'cors', 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
     return await response.json();
   }
 
@@ -20,8 +26,11 @@ export default function CreateItem() {
       const newProduct = {
         name: inputProductName,
         quantity: inputProductQuantity, 
-        price: inputProductPrice
+        price: inputProductPrice, 
+        store_id: item.storeId
       };
+      console.log(item.storeId); 
+      //console.log(newProduct.store_id); 
       console.log(JSON.stringify(newProduct)); 
       await fetch(`http://localhost:3001/stores/${item.storeId}/items/new`, {
         method: "POST",

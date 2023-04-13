@@ -16,7 +16,7 @@ itemRouter.get('/', async (req, res) => {
   });
 
 itemRouter.get('/:itemId', async (req, res) => {
-    const storeId = req.params.store_id; //maybe ?? idk? 
+    const storeId = req.params.storeId; //maybe ?? idk? 
     const itemId = req.params.itemId;
     try {
       const item = await Item.findOne({ _id: itemId });
