@@ -25,7 +25,7 @@ export default function SingleStore() {
       <div>
         {store.map(item => <Link key={item._id} to={`/items/${item._id}`}><h1>{item.name}</h1></Link>)}
       </div>
-  
+    
       
     </div>
   );
