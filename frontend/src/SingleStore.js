@@ -23,7 +23,7 @@ export default function SingleStore() {
       <h1>name: {store.name}</h1>
       <h1> item: </h1>
       <div>
-        {store.map(item => <Link key={item._id} to={`${item._id}`}><h1>{item.name}</h1></Link>)}
+        {store.map(item => <Link key={item._id} to={`/items/${item._id}`}><h1>{item.name}</h1></Link>)}
       </div>
   
       
