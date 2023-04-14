@@ -5,9 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Wrapper from './Wrapper';
 import Stores, { fetchStore } from './Stores';
-import SingleStore, { getItems } from './SingleStore.js';
+import SingleStore, { getStore } from './SingleStore.js';
 import CreateProduct from './NewStore.js'; 
-import Items, { fetchItem } from './Items';
+import Items, { getItems } from './Items';
 
 import SingleItem, { getItem } from './SingleItem.js';
 import CreateItem, {getItemNew} from './NewItem.js'; 
@@ -16,39 +16,47 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Wrapper />,
-    children: [
-      {
-        path: "/stores",
-        loader: fetchStore,
-        element: <Stores />,
-      },
-      {
-        path: "/stores/:storeId",
-        loader: getItems,
-        element: (
-            <Items />
-        ),
-      },
-      {
-        path: "/stores/new",
-        element: (
-            <CreateProduct />
-        ),
-      },
-      {
-        path: "/stores/:storeId/items/:itemId",
-        loader: getItem,
-        element: (
-            <SingleItem />
-        ),
-      },
-      {
-        path: "/stores/:storeId/items/new",
-        loader: getItemNew, 
-        element: (
-            <CreateItem />
-        ),
-      },
+        children: [
+            {
+                path: "/stores",
+                loader: fetchStore,
+                element: <Stores />,
+            },
+            {
+                path: "/stores/:storeId",
+                loader: getStore,
+                element: (
+                    <SingleStore />
+                ),
+            },
+            {
+                path: "/stores/new",
+                element: (
+                    <CreateProduct />
+                ),
+            },
+            {
+                path: "/stores/:storeId/items/:itemId",
+                loader: getItem,
+                element: (
+                    <SingleItem />
+                ),
+            },
+            {
+                path: "/stores/:storeId/items/new",
+                loader: getItemNew,
+                element: (
+                    <CreateItem />
+                ),
+            },
+            {
+                path: "/stores/:storeId/items",
+                loader: getItems,
+                element: (
+                    <Items />
+                ),
+            }
+      
     ],
   },
 ]);

@@ -21,12 +21,15 @@ export default function CreateProduct() {
     }
   
     return (
+        <div>
+
       <form onSubmit={(e) => {
         e.preventDefault();
         handleSubmit(e.data); 
       }}>
         <input type="text" placeholder="Store name..." value={inputProductName} onChange={(e) => setInputProductName(e.target.value)} />
         <button type="submit">Add</button>
-      </form>
+        </form>
+        </div>
     )
   }

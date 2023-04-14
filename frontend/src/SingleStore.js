@@ -1,12 +1,7 @@
 import {Link, useLoaderData} from 'react-router-dom';
 
-export async function getItems({ params }) {
-  const response = await fetch(`http://localhost:3001/stores/${params.storeId}`, {
-    method: "GET",
-    mode: 'cors',
-    headers: {
-        'Content-Type': 'application/json'
-    }});
+export async function getStore({ params }) {
+  const response = await fetch(`http://localhost:3001/stores/${params.storeId}`)
 
   const check =  await response.json();
   //console.log(check); 
@@ -19,12 +14,11 @@ export default function SingleStore() {
 
 
   return (
-    <div>
-      <h1>name: {store.name}</h1>
-      <h1> item: </h1>
       <div>
-        {store.map(item => <Link key={item._id} to={`/items/${item._id}`}><h1>{item.name}</h1></Link>)}
-      </div>
+      <header>
+              <Link to={`/stores/${store._id}/items`}>View Items</Link>
+      </header>
+      <h1>name: {store.name}</h1>
     
       
     </div>

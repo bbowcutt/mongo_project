@@ -20,7 +20,8 @@ storeRouter.get('/', async (req, res) => {
 storeRouter.get('/:storeId', async (req, res) => {
     console.log("store router store id", req.params.storeId); 
 
-    const items = await Item.find({ "store_id": req.params.storeId});
+    const items = await Store.findOne({ "_id": req.params.storeId });
+    console.log(items);
     res.send(items);
     // const storeId = req.params.storeId;
     // console.log("stores StoreId: ", storeId); 
