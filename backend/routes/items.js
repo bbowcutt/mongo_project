@@ -42,10 +42,11 @@ itemRouter.post("/new", async (req, res) => {
     const newItem = await new Item({
       _id: uuid4(), 
       price: req.body.price, 
-      quantity: req.body.quanitity, 
+      quantity: req.body.quantity, 
       name: req.body.name,
-      store_id: req.params.storeI
+      store_id: req.params.storeId
     }).save(); 
+    res.send("yay!"); 
     
   }); 
 
