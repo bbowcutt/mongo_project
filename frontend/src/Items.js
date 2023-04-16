@@ -1,4 +1,5 @@
 import {Link, useLoaderData} from 'react-router-dom';
+import './items.css'
 
 export default function Items() {
   const items = useLoaderData();
@@ -12,7 +13,7 @@ export default function Items() {
   return (
       <>
       <div>
-        
+      <link rel="stylesheet" href="items.css" />
         {items.map(item => <Link key={item._id} to={`${item._id}`}><h1>{item.name}</h1></Link>)}
       </div>
     </>
