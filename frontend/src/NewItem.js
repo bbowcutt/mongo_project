@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export async function getItemNew({ params }) {
     const response = await fetch(`http://localhost:3001/stores/${params.storeId}`,  {
@@ -15,6 +16,7 @@ export async function getItemNew({ params }) {
   }
 
 export default function CreateItem() {
+    const storeInfo = useParams();
     const item = useLoaderData(); 
     const nameChange = (event) => {
         inputProductName = event.target.value; 
@@ -25,18 +27,18 @@ export default function CreateItem() {
 
 
     async function handleSubmit(data) {
-        console.log("Console loggin: " , item); 
+        console.log(storeInfo.storeId); 
 
       const newProduct = {
         name: inputProductName,
         quantity: inputProductQuantity, 
-        price: inputProductPrice, 
-        store_id: item._id
+        price: inputProductPrice,
+        store_id: storeInfo.storeId
       };
       console.log(newProduct); 
       //console.log(newProduct.store_id); 
       console.log(JSON.stringify(newProduct)); 
-      await fetch(`http://localhost:3001/stores/${item.storeId}/items/new`, {
+      await fetch(`http://localhost:3001/stores/${storeInfo.storeId}/items/new`, {
         method: "POST",
         body: JSON.stringify(newProduct),
         mode: 'cors', 

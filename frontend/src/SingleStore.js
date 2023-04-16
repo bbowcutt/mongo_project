@@ -18,6 +18,9 @@ export default function SingleStore() {
       <header>
               <Link to={`/stores/${store._id}/items`}>View Items</Link>
       </header>
+      <header>
+              <Link to={`/stores/${store._id}/items/new`}>Add New Item</Link>
+      </header>
       <h1>name: {store.name}</h1>
     
       
