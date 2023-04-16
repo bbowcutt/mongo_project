@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import './stores.css'
 
 export default function CreateProduct() {
     const nameChange = (event) => {
@@ -27,6 +28,7 @@ export default function CreateProduct() {
         e.preventDefault();
         handleSubmit(e.data); 
       }}>
+         <link rel="stylesheet" href="stores.css" />
         <input type="text" placeholder="Store name..." value={inputProductName} onChange={(e) => setInputProductName(e.target.value)} />
         <button type="submit">Add</button>
         </form>

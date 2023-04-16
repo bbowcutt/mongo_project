@@ -9,6 +9,7 @@ export default function Wrapper() {
         <Link to="/stores">View all stores</Link>
       </header>
       <header>
+      <link rel="stylesheet" href="stores.css" />
         <Link to="/stores/new">Add new store</Link>
       </header>
     
