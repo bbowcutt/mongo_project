@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import { useLoaderData } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import './items.css'
 
 export async function getItemNew({ params }) {
     const response = await fetch(`http://localhost:3001/stores/${params.storeId}`,  {
@@ -53,6 +54,7 @@ export default function CreateItem() {
         e.preventDefault();
         handleSubmit(e.data); 
       }}>
+        <link rel="stylesheet" href="items.css" />
         <input type="text" placeholder="Item name..." value={inputProductName} onChange={(e) => setInputProductName(e.target.value)} />
         <input type="text" placeholder="Item quantity..." value={inputProductQuantity} onChange={(e) => setInputProductQuantity(e.target.value)} />
         <input type="text" placeholder="Item price..." value={inputProductPrice} onChange={(e) => setInputProductPrice(e.target.value)} />
